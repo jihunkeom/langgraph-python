@@ -4,8 +4,8 @@ import time
 import requests
 
 # 서버 설정
-BASE_URL = "https://langgraph-agent-v2.1xe7hspvt1x3.us-south.codeengine.appdomain.cloud"
-# BASE_URL = "http://localhost:8080"
+# BASE_URL = "https://langgraph-agent-v2.1xe7hspvt1x3.us-south.codeengine.appdomain.cloud"
+BASE_URL = "http://localhost:8080"
 CHAT_ENDPOINT = f"{BASE_URL}/chat/completions"
 
 

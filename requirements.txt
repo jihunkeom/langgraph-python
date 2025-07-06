@@ -9,4 +9,3 @@ langchain_openai
 langchain-ibm
 duckduckgo-search
 ibm-watsonx-ai
-langchain_tavily

@@ -181,9 +181,7 @@ def get_llm_sync(messages: List[Message], model: str, thread_id: str, tools):
     validate_chat_history(inputs["messages"])
     logger.info(f"Calling langgraph with input: {inputs}")
     if tools:
-        graph = create_react_agent(
-            model_instance, tools=tools, state_modifier=STATE_MODIFIER
-        )
+        graph = create_react_agent(model_instance, tools=tools, prompt=STATE_MODIFIER)
         response = graph.invoke(inputs)
     else:
         graph = model_instance
@@ -266,13 +264,9 @@ async def get_llm_stream(messages: List[Message], model: str, thread_id: str, to
             model_id=model, watsonx_client=client_model_instance
         )
     if use_tools:
-        graph = create_react_agent(
-            model_instance, tools=tools, state_modifier=STATE_MODIFIER
-        )
+        graph = create_react_agent(model_instance, tools=tools, prompt=STATE_MODIFIER)
     else:
-        graph = create_react_agent(
-            model_instance, tools=[], state_modifier=STATE_MODIFIER
-        )
+        graph = create_react_agent(model_instance, tools=[], prompt=STATE_MODIFIER)
     inputs = ""
     accumulated_contents = ""
     try:

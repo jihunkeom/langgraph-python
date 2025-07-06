@@ -72,7 +72,7 @@ def tavily_search(search_phrase: str):
         - Retrieving longer-form summaries from trusted sources
     """
     tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
-    response = tavily_client.search(search_phrase, time_range="month")
+    response = tavily_client.search(search_phrase, time_range="month", max_results=13)
     response = json.dumps(response, ensure_ascii=False)
     return response
 

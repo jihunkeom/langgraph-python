@@ -15,11 +15,6 @@ class ModelName(str, Enum):
     gpt_4_o_mini = "gpt-4o-mini"
 
 
-class ToolName(str, Enum):
-    web_search_duckduckgo = "web_search_duckduckgo"
-    news_search_duckduckgo = "news_search_duckduckgo"
-
-
 DEFAULT_MODEL = ModelName.llama_4_maverick_17b_128e_instruct_fp8
 
 

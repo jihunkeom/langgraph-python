@@ -15,7 +15,7 @@ from models import (
     MessageResponse,
 )
 from security import get_current_user
-from tools import news_search_duckduckgo, web_search_duckduckgo
+from tools import news_search_duckduckgo, tavily_search, web_search_duckduckgo
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -48,9 +48,10 @@ async def chat_completions(
         thread_id = request.extra_body.thread_id
     logger.info("thread_id: " + thread_id)
     model = DEFAULT_MODEL
-    if request.model:
-        model = request.model
-    selected_tools = [web_search_duckduckgo, news_search_duckduckgo]
+    # if request.model:
+    #     model = request.model
+    # selected_tools = [web_search_duckduckgo, news_search_duckduckgo]
+    selected_tools = [tavily_search]
     if request.stream:
         return StreamingResponse(
             get_llm_stream(request.messages, model, thread_id, selected_tools),
@@ -65,7 +66,8 @@ async def chat_completions(
             id=id,
             object="chat.completion",
             created=int(time.time()),
-            model=request.model,
+            # model=request.model,
+            model=model,
             choices=[
                 Choice(
                     index=0,

@@ -19,7 +19,7 @@ def test_chat_completion_with_api_key():
     }
 
     payload = {
-        "model": "meta-llama/llama-3-2-90b-vision-instruct",
+        # "model": "meta-llama/llama-3-2-90b-vision-instruct",
         "messages": [{"role": "user", "content": "안녕하세요! 오늘 날씨는 어때요?"}],
         "stream": False,
     }
@@ -44,7 +44,7 @@ def test_chat_completion_with_bearer_token():
     }
 
     payload = {
-        "model": "meta-llama/llama-3-2-90b-vision-instruct",
+        # "model": "meta-llama/llama-3-2-90b-vision-instruct",
         "messages": [
             {
                 "role": "user",
@@ -71,7 +71,7 @@ def test_chat_completion_without_auth():
     headers = {"Content-Type": "application/json"}
 
     payload = {
-        "model": "meta-llama/llama-3-2-90b-vision-instruct",
+        # "model": "meta-llama/llama-3-2-90b-vision-instruct",
         "messages": [
             {"role": "user", "content": "인증 없이도 작동하는지 테스트해보겠습니다."}
         ],
@@ -99,7 +99,7 @@ def test_chat_completion_with_thread_id():
     }
 
     payload = {
-        "model": "meta-llama/llama-3-2-90b-vision-instruct",
+        # "model": "meta-llama/llama-3-2-90b-vision-instruct",
         "messages": [
             {"role": "user", "content": "이것은 특정 스레드에서의 대화입니다."}
         ],
@@ -124,7 +124,7 @@ def test_streaming_chat_completion():
     headers = {"Content-Type": "application/json", "X-API-Key": "stream_test_key"}
 
     payload = {
-        "model": "meta-llama/llama-3-2-90b-vision-instruct",
+        # "model": "meta-llama/llama-3-2-90b-vision-instruct",
         "messages": [
             {"role": "user", "content": "스트리밍으로 긴 답변을 생성해주세요."}
         ],
@@ -197,7 +197,7 @@ def test_thread_id_conversation_memory():
 
     # 첫 번째 메시지
     payload1 = {
-        "model": "meta-llama/llama-3-2-90b-vision-instruct",
+        # "model": "meta-llama/llama-3-2-90b-vision-instruct",
         "messages": [
             {"role": "user", "content": "내 이름은 김철수입니다. 기억해주세요."}
         ],
@@ -213,7 +213,7 @@ def test_thread_id_conversation_memory():
 
         # 두 번째 메시지 (이름을 물어봄)
         payload2 = {
-            "model": "meta-llama/llama-3-2-90b-vision-instruct",
+            # "model": "meta-llama/llama-3-2-90b-vision-instruct",
             "messages": [{"role": "user", "content": "내 이름이 뭐였죠?"}],
             "stream": False,
         }
@@ -226,7 +226,7 @@ def test_thread_id_conversation_memory():
 
         # 세 번째 메시지 (이전 대화 포함)
         payload3 = {
-            "model": "meta-llama/llama-3-2-90b-vision-instruct",
+            # "model": "meta-llama/llama-3-2-90b-vision-instruct",
             "messages": [
                 {"role": "user", "content": "내 이름은 김철수입니다. 기억해주세요."},
                 {"role": "assistant", "content": "네, 김철수님을 기억하겠습니다."},

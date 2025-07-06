@@ -38,7 +38,7 @@ from token_utils import get_access_token
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-STATE_MODIFIER = "항상 한국어로만 대답하세요."
+STATE_MODIFIER = "When thinking or passing parameters to tools, always use English. But, when you are giving out the final answer, use Korean."
 
 
 def init_openai(model: str, parm_overrides: dict = {}):
@@ -197,7 +197,7 @@ def get_llm_sync(messages: List[Message], model: str, thread_id: str, tools):
 
 
 def format_resp(struct):
-    return "data: " + json.dumps(struct) + "\n\n"
+    return "data: " + json.dumps(struct, ensure_ascii=False) + "\n\n"
 
 
 def validate_chat_history(messages: List[BaseMessage]):

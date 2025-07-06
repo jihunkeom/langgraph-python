@@ -139,3 +139,5 @@ tmp/
 secrets.json
 config.json
 credentials.json
+
+current_token.txt

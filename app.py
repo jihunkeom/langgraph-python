@@ -1,10 +1,11 @@
+import json
 import logging
 import time
 import uuid
 from typing import Any, Dict, Optional
 
 from fastapi import Depends, FastAPI, Header
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import JSONResponse, Response, StreamingResponse
 
 from llm_utils import get_llm_stream, get_llm_sync
 from models import (
@@ -76,7 +77,12 @@ async def chat_completions(
                 )
             ],
         )
-        return JSONResponse(content=response.dict())
+        json_content = json.dumps(response.dict(), ensure_ascii=False)
+        return Response(
+            content=json_content,
+            media_type="application/json; charset=utf-8",
+            headers={"Content-Type": "application/json; charset=utf-8"},
+        )
 
 
 if __name__ == "__main__":

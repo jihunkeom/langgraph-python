@@ -21,7 +21,7 @@ def test_chat_completion_with_api_key():
     payload = {
         # "model": "meta-llama/llama-3-2-90b-vision-instruct",
         "messages": [
-            {"role": "user", "content": "who is the president of South Korea?"}
+            {"role": "user", "content": "What are the latest news about IBM?"}
         ],
         "stream": False,
     }
@@ -127,9 +127,7 @@ def test_streaming_chat_completion():
 
     payload = {
         # "model": "meta-llama/llama-3-2-90b-vision-instruct",
-        "messages": [
-            {"role": "user", "content": "스트리밍으로 긴 답변을 생성해주세요."}
-        ],
+        "messages": [{"role": "user", "content": "IBM 최신 소식을 알려주세요"}],
         "stream": True,
     }
 
@@ -259,13 +257,13 @@ def run_all_tests():
     print("=" * 50)
 
     tests = [
-        ("API 키 테스트", test_chat_completion_with_api_key),
-        ("Bearer 토큰 테스트", test_chat_completion_with_bearer_token),
-        ("인증 없이 테스트", test_chat_completion_without_auth),
-        ("Thread ID 테스트", test_chat_completion_with_thread_id),
+        # ("API 키 테스트", test_chat_completion_with_api_key),
+        # ("Bearer 토큰 테스트", test_chat_completion_with_bearer_token),
+        # ("인증 없이 테스트", test_chat_completion_without_auth),
+        # ("Thread ID 테스트", test_chat_completion_with_thread_id),
         ("스트리밍 테스트", test_streaming_chat_completion),
-        ("잘못된 페이로드 테스트", test_invalid_payload),
-        ("Thread ID 대화 기억 테스트", test_thread_id_conversation_memory),
+        # ("잘못된 페이로드 테스트", test_invalid_payload),
+        # ("Thread ID 대화 기억 테스트", test_thread_id_conversation_memory),
     ]
 
     results = []

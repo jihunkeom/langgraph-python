@@ -38,6 +38,8 @@ from token_utils import get_access_token
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+STATE_MODIFIER = "항상 한국어로만 대답하세요."
+
 
 def init_openai(model: str, parm_overrides: dict = {}):
     defaults = {"temperature": 0, "streaming": False}
@@ -179,7 +181,9 @@ def get_llm_sync(messages: List[Message], model: str, thread_id: str, tools):
     validate_chat_history(inputs["messages"])
     logger.info(f"Calling langgraph with input: {inputs}")
     if tools:
-        graph = create_react_agent(model_instance, tools=tools)
+        graph = create_react_agent(
+            model_instance, tools=tools, state_modifier=STATE_MODIFIER
+        )
         response = graph.invoke(inputs)
     else:
         graph = model_instance
@@ -262,9 +266,13 @@ async def get_llm_stream(messages: List[Message], model: str, thread_id: str, to
             model_id=model, watsonx_client=client_model_instance
         )
     if use_tools:
-        graph = create_react_agent(model_instance, tools=tools)
+        graph = create_react_agent(
+            model_instance, tools=tools, state_modifier=STATE_MODIFIER
+        )
     else:
-        graph = create_react_agent(model_instance, tools=[])
+        graph = create_react_agent(
+            model_instance, tools=[], state_modifier=STATE_MODIFIER
+        )
     inputs = ""
     accumulated_contents = ""
     try:

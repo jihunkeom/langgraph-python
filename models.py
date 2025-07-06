@@ -9,6 +9,9 @@ class ModelName(str, Enum):
     mistral_large = "mistralai/mistral-large"
     llama_3_1_405b = "meta-llama/llama-3-405b-instruct"
     llama_3_2_90b = "meta-llama/llama-3-2-90b-vision-instruct"
+    llama_4_maverick_17b_128e_instruct_fp8 = (
+        "meta-llama/llama-4-maverick-17b-128e-instruct-fp8"
+    )
     gpt_4_o_mini = "gpt-4o-mini"
 
 
@@ -17,7 +20,7 @@ class ToolName(str, Enum):
     news_search_duckduckgo = "news_search_duckduckgo"
 
 
-DEFAULT_MODEL = ModelName.llama_3_2_90b
+DEFAULT_MODEL = ModelName.llama_4_maverick_17b_128e_instruct_fp8
 
 
 class Function(BaseModel):

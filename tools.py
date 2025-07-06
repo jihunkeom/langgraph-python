@@ -29,8 +29,8 @@ def tavily_search(search_phrase: str):
     results = search.invoke(search_phrase)
     retrieved = ""
     for result in results["results"]:
-        retrieved += f"{result['title']}\n{result['content']}\n{result['url']}\n\n"
-    return results
+        retrieved += f"{result['content']}\n{result['url']}\n\n"
+    return retrieved.strip()
 
 
 tool_choices = {

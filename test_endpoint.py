@@ -4,7 +4,7 @@ import time
 import requests
 
 # 서버 설정
-# BASE_URL = "https://langgraph-agent-v2.1xe7hspvt1x3.us-south.codeengine.appdomain.cloud"
+BASE_URL = ""
 BASE_URL = "http://localhost:8080"
 CHAT_ENDPOINT = f"{BASE_URL}/chat/completions"
 
@@ -20,9 +20,7 @@ def test_chat_completion_with_api_key():
 
     payload = {
         # "model": "meta-llama/llama-3-2-90b-vision-instruct",
-        "messages": [
-            {"role": "user", "content": "What are the latest news about IBM?"}
-        ],
+        "messages": [{"role": "user", "content": "2025"}],
         "stream": False,
     }
 
@@ -127,7 +125,7 @@ def test_streaming_chat_completion():
 
     payload = {
         # "model": "meta-llama/llama-3-2-90b-vision-instruct",
-        "messages": [{"role": "user", "content": "IBM 최신 소식을 알려주세요"}],
+        "messages": [{"role": "user", "content": "2000달러가 몇 원이야?"}],
         "stream": True,
     }
 

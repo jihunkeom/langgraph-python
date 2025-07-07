@@ -13,9 +13,11 @@ class ModelName(str, Enum):
         "meta-llama/llama-4-maverick-17b-128e-instruct-fp8"
     )
     gpt_4_o_mini = "gpt-4o-mini"
+    gpt_4_o = "gpt-4o"
 
 
-DEFAULT_MODEL = ModelName.llama_4_maverick_17b_128e_instruct_fp8
+# DEFAULT_MODEL = ModelName.llama_4_maverick_17b_128e_instruct_fp8
+DEFAULT_MODEL = ModelName.gpt_4_o
 
 
 class Function(BaseModel):

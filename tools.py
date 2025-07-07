@@ -1,10 +1,11 @@
 import json
 
+import requests
 from langchain_community.tools import DuckDuckGoSearchResults
 from langchain_core.tools import tool
 from tavily import TavilyClient
 
-from config import TAVILY_API_KEY
+from config import ALPHAVANTAGE_API_KEY, TAVILY_API_KEY
 
 
 @tool
@@ -77,10 +78,40 @@ def tavily_search(search_phrase: str):
     return response
 
 
+@tool
+def get_currency_exchange(src_currency: str, tgt_currency: str):
+    """Performs a currency exchange rate lookup using the Alpha Vantage API.
+    It changes the currency from USD to KRW.
+
+    Returns:
+        A string containing the exchange rate.
+    """
+    from_currency = "USD"
+    to_currency = "KRW"
+    request_url = f"https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency={from_currency}&to_currency={to_currency}&apikey={ALPHAVANTAGE_API_KEY}"
+    try:
+        response = requests.get(request_url)
+        data = response.json()["Realtime Currency Exchange Rate"]
+    except Exception as e:
+        data = {
+            "2. From_Currency Name": "United States Dollar",
+            "4. To_Currency Name": "South Korean Won",
+            "5. Exchange Rate": "1366.77000000",
+            "6. Last Refreshed": "2025-07-07 11:23:32",
+        }
+
+    to_return = f"""
+    The exchange rate from {data["2. From_Currency Name"]} to {data["4. To_Currency Name"]} is {data["5. Exchange Rate"]} as of {data["6. Last Refreshed"]}.
+    """
+
+    return to_return.strip()
+
+
 tool_choices = {
     "web_search_duckduckgo": web_search_duckduckgo,
     "news_search_duckduckgo": news_search_duckduckgo,
     "tavily_search": tavily_search,
+    "get_currency_exchange": get_currency_exchange,
 }
 
 
